@@ -13,11 +13,10 @@
 
 
     if (!isset($_POST['receipt'])) {
-        $receipt = '000000P008000348877';
-        // return false;
-    }else{
-        $receipt = $_POST['receipt'];
+        return false;
     }
+    // $receipt = '000000P008000348877';
+    $receipt = $_POST['receipt'];
     
     
     // $receipt = '000000P008000348877';
@@ -120,5 +119,6 @@
     }
 
     // إخراج ملف PDF
-    $pdf->Output('C:/xampp/htdocs/whatsApp_Sender/invoice.pdf', 'I');
+    $pdf->Output('https://shop.alamer-market.com/public/storage/recipts/'.$receipt.'.pdf', 'F');
+    // $pdf->Output('C:/xampp/htdocs/whatsApp_Sender/invoice.pdf', 'I');
 ?>

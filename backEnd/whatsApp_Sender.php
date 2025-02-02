@@ -1,49 +1,76 @@
 <?php
-    if (!isset($_POST['phone'])) {
-        return error_log("dosen't Recive a Phone Number");
-    };
+    // if (!isset($_POST['phone'])) {
+    //     return error_log("dosen't Recive a Phone Number");
+    // };
 
-    $phone = $_POST['phone'];
-    $name = $_POST['name'];
+    // $phone = $_POST['phone'];
+    // $name = $_POST['name'];
 
 
     // echo($phone);
     $url = 'https://graph.facebook.com/v15.0/545202698675840/messages';
-    $token = 'EAAVccrv3Qa0BO6GdNHCSNmfvU63CwMFIVpZCpx2mHDs0RaDiIKXwTFK0DSALpswKtiZBKu5w81rPWNXdZCO1rNaM0qsnlCObMZCrszYFCfu8njQTXJ752LG0n8UV7POAYeqCDkpcI0bTHNRKX8MWi2E3E8td6cVI6ivvrd2kMKf9psKdNjqiCMQLjww0bYZBfnoQDnPYAzlIZAt9ZAGSEg3fZBQofQ4c';
+    $token = 'EAAVccrv3Qa0BO0hBpRYxkk3HIzyVrAJ4fgb1TclaNEkbQEX3fD9WDoVfdkvuORyMmvcD5XJZBk1SprTOnTg8McolTHEvBxGnTrz4HsQFO8w3m4xDH4o56D0kczWvjHHH2f5OzamJj89OtHznfbiT7nAXG9r5KIIzxeUDhysCsYuhQGL7Nru7R1DMa7HpCNf9fhyhB5thh1bkUG6DCesdZA3egZD';
     
-    $data = [
-        'messaging_product' => 'whatsapp',
-        'to' => '966569160996',
-        // 'type' => 'document',
-        // 'document' => [
-        //     // 'link' => 'https://alamer-market.com/data1/images/%D8%A7%D9%84%D8%B9%D8%B1%D8%B6%20%D8%B3%D8%A7%D8%B1%D9%8A%20%D9%85%D9%86%2023%20%D8%A5%D9%84%D9%89%2029%20%D8%B1%D8%AC%D8%A8%201446%D9%87%D9%80.pdf',
-        //     'link' => 'https://172.16.9.123/whatsapp_sender/a.pdf',
-        //     'filename' => 'عروض نار وشرار 🔥',
-        //     'caption' =>  ' لاتفوتك عروض العامر الرمضانية! 😍🌙'
-        // ]
+    // $data = [
+    //     'messaging_product' => 'whatsapp',
+    //     'to' => '966569160996',
+    //     'type' => 'document',
+    //     'document' => [
+    //         // 'link' => 'https://alamer-market.com/data1/images/%D8%A7%D9%84%D8%B9%D8%B1%D8%B6%20%D8%B3%D8%A7%D8%B1%D9%8A%20%D9%85%D9%86%2023%20%D8%A5%D9%84%D9%89%2029%20%D8%B1%D8%AC%D8%A8%201446%D9%87%D9%80.pdf',
+    //         'link' => 'https://shop.alamer-market.com/public/storage/vat.pdf',
+    //         'filename' => 'عروض نار وشرار 🔥',
+    //         'caption' =>  ' لاتفوتك عروض العامر الرمضانية! 😍🌙'
+    //     ]
+
+
+
 
         
+
+
+
+
+        
+    // ];
+
+
+
+    $data = [
+        'messaging_product' => 'whatsapp',
+        'recipient_type' => 'individual',
+        'to' => '966569160996',
         'type' => 'template',
         'template' => [
-            'name' => 'hello_emp_from_programmer',
+            'name' => 'pdf',
             'language' => [
-                'code' => 'ar'
+                'code' => 'ar' 
             ],
             'components' => [
                 [
-                    'type' => 'header',
+                    'type' => 'header', 
                     'parameters' => [
                         [
-                            'type' => 'text',
-                            'text' => 'علي' // متغير النص في الهيدر
+                            'type' => 'document',
+                            'document' => [
+                                'link' => 'https://shop.alamer-market.com/public/storage/vat.pdf', 
+                                'filename' => 'عروض العامر'
+                            ]
                         ]
                     ]
                 ],
-
+                [
+                    'type' => 'body',
+                    'parameters' => [
+                        [
+                            'type' => 'text',
+                            'text' => '🔥 لا تفوت عروض العامر الرمضانية! 🌙'
+                        ]
+                    ]
+                ]
             ]
         ]
-        
     ];
+
 
     $headers = [
         'Authorization: Bearer ' . $token,
@@ -60,6 +87,5 @@
     curl_close($ch);
 
     echo $response;
-    $responseData = json_decode($response, true);
 
 ?>
