@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    line-height: 1.6;
+}
+.invoice {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.header img {
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+.header h1 {
+    margin: 0;
+}
+.company-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.details {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+.details .rowsHandlesr{
+    width: 50%;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+}
+.details .row{
+    width: 100%;
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    border: solid 0px black;
+}
+.details .rowsHandlesr .row p{
+    width: 170px;
+    height: 20px;
+    text-align: center;
+
+}
+.details .rowsHandlesr .row p:first-child{
+    width: 130px;
+    text-align: start;
+}
+.details, .sales {
+    margin-bottom: 20px;
+}
+.sales table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.sales table th {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+.sales table th {
+    background-color: #f9f9f9;
+    text-align: center;
+    border-collapse: collapse;
+}
+.sales table tbody tr { 
+    border: 1px solid #ccc;
+}
+.sales table tbody td {
+    padding: 8px;
+    text-align: center;
+}
+.totals {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: right;
+    font-size: 1.1em;
+}

@@ -1,0 +1,174 @@
+$html = '
+<html lang="ar">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>فاتورة شراء</title>
+        <style>
+            /* تعيين الخطوط */
+            body {
+                font-family: "Amiri", Arial, sans-serif;
+                margin: 20px;
+                line-height: 1.6;
+                direction: rtl;
+            }
+
+            .invoice {
+                width: 100%;
+                margin: 0 auto;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+            }
+
+            .header {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .header img {
+                max-width: 150px;
+                margin-bottom: 10px;
+            }
+
+            .header h1 {
+                margin: 0;
+                font-size: 24px;
+            }
+
+            .company-info {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .company-info p {
+                margin: 5px 0;
+            }
+
+            /* تنسيق تفاصيل المعاملة */
+            .details {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .details .row {
+                width: 100%;
+                height: 25px;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 5px;
+            }
+
+            .details .row p {
+                margin: 0;
+                width: 48%;
+            }
+
+            /* تنسيق الجدول */
+            .sales {
+                margin-bottom: 20px;
+            }
+
+            .sales table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .sales table th,
+            .sales table td {
+                border: 1px solid #ccc;
+                padding: 8px;
+                text-align: center;
+            }
+
+            /* تنسيق الإجماليات */
+            .totals {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                font-size: 1.1em;
+                margin-top: 20px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="invoice">
+            <div class="header">
+                <img src="data:image/png;base64,'.$imageBase64.'" alt="Company Logo" style="width: 400px; height: 50px;">
+                <h1>فاتورة شراء</h1>
+            </div>
+
+            <div class="company-info">
+                <p><strong>'.$data["companyinfo"]["Name"].'</strong></p>
+                <p>'.$data["companyinfo"]["Name 2"].'</p>
+                <p>'.$data["companyinfo"]["City"].'</p>
+                <p>'.$data["companyinfo"]["Address"].'</p>
+                <p>الهاتف: '.$data["companyinfo"]["Phone No_"].'</p>
+                <p>رقم تسجيل ضريبة القيمة المضافة: '.$data["companyinfo"]["VAT Registration No_"].'</p>
+            </div>
+
+            <div class="details">
+                <div class="row">
+                    <p><strong>رقم المعاملة:</strong></p>
+                    <p>'.$data["transhdr"]["transno"].'</p>
+                </div>
+                <div class="row">
+                    <p><strong>المتجر:</strong></p>
+                    <p>'.$data["transhdr"]["store"].'</p>
+                </div>
+                <div class="row">
+                    <p><strong>رقم الإيصال:</strong></p>
+                    <p>'.$data["transhdr"]["recno"].'</p>
+                </div>
+
+                <div class="row">
+                    <p><strong>التاريخ:</strong></p>
+                    <p>'.substr($data["transhdr"]["Date"], 0, 10).'</p>
+                </div>
+                <div class="row">
+                    <p><strong>رقم الموظف:</strong></p>
+                    <p>'.$data["transhdr"]["staff"].'</p>
+                </div>
+                <div class="row">
+                    <p><strong>العميل:</strong></p>
+                    <p>'.$data["transhdr"]["customer"].'</p>
+                </div>
+            </div>
+
+            <div class="sales">
+                <h3>تفاصيل الشراء</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Item</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>VAT</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>'.$data["sales"][0]["no"].'</td>
+                            <td>'.$data["sales"][0]["item"].'</td>
+                            <td>'.$data["sales"][0]["desc_en"].'</td>
+                            <td>'.$data["sales"][0]["Quantity"].'</td>
+                            <td>'.$data["sales"][0]["Price"].'</td>
+                            <td>'.$data["sales"][0]["vat"].'</td>
+                            <td>'.$data["sales"][0]["total"].'</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="totals">
+                <p><strong>الرصيد:</strong> '.abs($data["transhdr"]["balance"]).'</p>
+                <p><strong>الدفع:</strong> '.abs($data["transhdr"]["Payment"]).'</p>
+            </div>
+        </div>
+    </body>
+</html>'
+;
